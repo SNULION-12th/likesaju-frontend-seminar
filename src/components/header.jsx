@@ -116,6 +116,12 @@ export const Header = () => {
                 >
                   충전하기
                 </button>
+                <Link
+                  to="/history" // Add this line for the "Payment History" button
+                  className="bg-[#160F49] text-white text-bases font-semibold leading-6 rounded-[50px] px-6 py-[6px] mt-2"
+                >
+                  결제 내역 보기
+                </Link>
                 <span
                   onClick={onClickLogout}
                   className="text-base font-normal underline text-[#160F49] self-start cursor-pointer"

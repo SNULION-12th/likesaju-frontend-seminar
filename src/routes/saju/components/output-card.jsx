@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { OutputCardBack } from './output-card-back';
 import { OutputCardFront } from './output-card-front';
 
-export const OutputCard = ({ data, isUnlocked }) => {
+export const OutputCard = ({ data, isLocked }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  console.log(isUnlocked, 'isunloickedadsf');
 
   const flipCard = () => {
     setIsFlipped(!isFlipped);
@@ -19,7 +18,7 @@ export const OutputCard = ({ data, isUnlocked }) => {
         onClick={flipCard}
       >
         <OutputCardFront data={data} />
-        <OutputCardBack data={data} isUnlocked={isUnlocked} />
+        <OutputCardBack data={data} isLocked={isLocked} />
       </div>
     </div>
   );

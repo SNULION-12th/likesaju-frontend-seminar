@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react"; // 수정
+import { getPointList } from "apis/api"; // 추가
 import coin from 'assets/icons/coin.png';
+import { paymentReady } from "apis/api";
 
 const PointComponent = ({ point, price }) => {
-    const onClickPoint = ({ price }) => {
-        alert(`${price}원을 결제합니다.`);
+    const onClickPoint = async ({ point, price }) => {
+        const response = await paymentReady({ point, price });
+        if (response.status === 200) {
+            localStorage.setItem('tid', response.data.tid);
+            window.location.href = response.data.next_redirect_pc_url;
+        }
     };
 
     return (
@@ -12,12 +18,24 @@ const PointComponent = ({ point, price }) => {
                 <img src={coin} alt="coin" className="w-[30px] h-[30px]" />
                 <span className="text-xl font-semibold text-[#170F49] leading-6">{point} 포인트</span>
             </div>
-            <button className='w-[130px] bg-[#4A3AFF] text-white text-[18px] font-normal leading-6 rounded-[50px] px-4 py-[13px]' onClick={() => onClickPoint({ price })}>₩ {price}</button>
+            <button className='w-[130px] bg-[#4A3AFF] text-white text-[18px] font-normal leading-6 rounded-[50px] px-4 py-[13px]' onClick={() => onClickPoint({ point, price })}>₩ {price}</button>
         </div>
     );
 };
 
 export const PointModal = ({ setIsModalOpen }) => {
+    const [pointList, setPointList] = useState([]);
+	
+    useEffect(() => {
+        const fetchPointList = async () => {
+            const response = await getPointList();
+            if (response) {
+                setPointList(response);
+            }
+        };
+        fetchPointList();
+    }, []);
+
     return (
         <div className="w-screen h-screen fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="w-[532px] bg-white rounded-[18px] shadow-md px-[30px] py-5">
@@ -29,10 +47,9 @@ export const PointModal = ({ setIsModalOpen }) => {
                 <div className="flex flex-col justify-center items-center gap-[50px] mt-[10px]">
                     <span className="text-[22px] leading-6 font-extrabold text-[#170F49] tracking-tighter">포인트 충전하기</span>
                     <div className="flex flex-col gap-[35px] w-full">
-                        <PointComponent point={10} price='1,200' />
-                        <PointComponent point={30} price='3,600' />
-                        <PointComponent point={50} price='6,000' />
-                        <PointComponent point={100} price='12,000' />
+                        {pointList && pointList.map((point, index) => (
+                            <PointComponent key={index} point={point.point} price={point.price} />
+                        ))}
                     </div>
                 </div>
             </div>
