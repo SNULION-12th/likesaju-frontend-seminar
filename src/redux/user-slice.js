@@ -7,6 +7,7 @@ const userSlice = createSlice({
     nickname: null,
     profilepic_id: null,
     remaining_points: null,
+    isLocked: true,
   },
   reducers: {
     setLoginState: (state, action) => {
@@ -18,8 +19,12 @@ const userSlice = createSlice({
       state.profilepic_id = profilepic_id;
       state.remaining_points = remaining_points;
     },
+    setLockState: (state, action) => {
+      state.isLocked = action.payload;
+    },
   },
 });
 
-export const { setLoginState, setUserProfile } = userSlice.actions;
+export const { setLoginState, setUserProfile, setLockState } =
+  userSlice.actions;
 export default userSlice.reducer;

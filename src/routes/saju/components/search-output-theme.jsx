@@ -5,8 +5,13 @@ import { OutputCardBack } from './output-card-back';
 import { SajuPurchaseModal } from '../../../components/modals/saju-purchase-modal';
 import { SajuShareModal } from '../../../components/modals/share-modal';
 import locked from '../../../assets/images/locked.png';
+import { useSelector } from 'react-redux';
+import { PointModal } from 'components/modals/point-modal';
 
 export const SearchOutputTheme = () => {
+  const data = useSelector((data) => data);
+  const [isPointModalOpen, setIsPointModalOpen] = useState(false);
+  const isLocked = data.user.isLocked;
   const OutputCardData = [
     {
       title: '건강운',
@@ -34,7 +39,6 @@ export const SearchOutputTheme = () => {
     },
   ];
 
-  const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
@@ -51,36 +55,36 @@ export const SearchOutputTheme = () => {
       <h1 className="text-[40px] font-extrabold leading-[48px] nanum-extra-bold mt-2">
         테마별 운세 보기
       </h1>
-      {isUnlocked ? (
-        <div className="relative w-fit grid grid-cols-2 gap-16 p-4 justify-items-center">
-          {OutputCardData.map((data, index) => (
-            <OutputCard key={index} data={data} isUnlocked={isUnlocked} />
-          ))}
-        </div>
-      ) : (
+      {isLocked ? (
         <div className="relative" onClick={openPurchaseModal}>
           <div className="relative w-fit grid grid-cols-2 gap-16 p-4 justify-items-center">
             {OutputCardData.map((data, index) => (
               <div className={'relative w-[500px] h-[370px] cursor-pointer'}>
-                <OutputCardBack
-                  key={index}
-                  data={data}
-                  isUnlocked={isUnlocked}
-                />
+                <OutputCardBack key={index} data={data} isLocked={isLocked} />
               </div>
             ))}
           </div>
           <img
             src={locked}
             alt="locked"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[228px] h-[228px]"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[228px] h-[228px] cursor-pointer"
           />
+        </div>
+      ) : (
+        <div className="relative w-fit grid grid-cols-2 gap-16 p-4 justify-items-center">
+          {OutputCardData.map((data, index) => (
+            <OutputCard key={index} data={data} isLocked={isLocked} />
+          ))}
         </div>
       )}
       {isPurchaseModalOpen && (
-        <SajuPurchaseModal setIsModalOpen={setIsPurchaseModalOpen} />
+        <SajuPurchaseModal
+          setIsModalOpen={setIsPurchaseModalOpen}
+          setIsPointModalOpen={setIsPointModalOpen}
+        />
       )}
-      {isUnlocked && (
+      {isPointModalOpen && <PointModal setIsModalOpen={setIsPointModalOpen} />}
+      {!isLocked && (
         <>
           <Button
             className={

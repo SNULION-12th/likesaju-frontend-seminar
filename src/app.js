@@ -10,6 +10,11 @@ import Auth from './routes/login/pages/auth';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import ApprovalPage from 'routes/pay/pages/approval-page';
+import CancelPage from 'routes/pay/pages/cancel-page';
+import FailPage from 'routes/pay/pages/fail-page';
+import PaymentHistoryPage from 'routes/pay/pages/history';
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +32,10 @@ function App() {
               />
               <Route path="/set-profile" element={<SetProfilePage />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/approval" element={<ApprovalPage />} />
+              <Route path="/cancel" element={<CancelPage />} />
+              <Route path="/fail" element={<FailPage />} />
+              <Route path="/payment-history" element={<PaymentHistoryPage />} />
             </Routes>
           </div>
         </div>

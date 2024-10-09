@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { PointModal } from './modals/point-modal';
 import coin from '../assets/icons/coin.png';
 import { removeCookie } from '../utils/cookie';
-import { signOut } from '../apis/api';
+import { signOut, getPaymentHistory } from '../apis/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginState, setUserProfile } from '../redux/user-slice';
 import { ProfileImage } from '../components/profile-image';
@@ -24,6 +24,7 @@ export const Header = () => {
 
   useEffect(() => {
     setIsLogin(loggedIn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const linkStyle =
@@ -32,6 +33,10 @@ export const Header = () => {
 
   const onClickPoint = () => {
     setIsPointModalOpen(true);
+  };
+
+  const onClickPaymentHistory = () => {
+    getPaymentHistory();
   };
 
   const onClickLogout = async () => {
@@ -115,6 +120,12 @@ export const Header = () => {
                   className="bg-[#160F49] text-white text-bases font-semibold leading-6 rounded-[50px] px-6 py-[6px]"
                 >
                   충전하기
+                </button>
+                <button
+                  onClick={() => (window.location.href = '/payment-history')}
+                  className="bg-[#160F49] text-white text-bases font-semibold leading-6 rounded-[50px] px-6 py-[6px]"
+                >
+                  포인트 충전내역
                 </button>
                 <span
                   onClick={onClickLogout}
