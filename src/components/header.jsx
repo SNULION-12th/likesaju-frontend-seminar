@@ -24,7 +24,7 @@ export const Header = () => {
 
   useEffect(() => {
     setIsLogin(loggedIn);
-  }, []);
+  }, [loggedIn]);
 
   const linkStyle =
     'text-xl font-bold text-[#14142B] leading-6 hover:font-extrabold hover:text-[#4A3AFF] hover:cursor-pointer';
@@ -115,6 +115,12 @@ export const Header = () => {
                   className="bg-[#160F49] text-white text-bases font-semibold leading-6 rounded-[50px] px-6 py-[6px]"
                 >
                   충전하기
+                </button>
+                <button
+                    onClick={() => window.location.href = '/payment-history'}
+                    className="bg-[#160F49] text-white text-bases font-semibold leading-6 rounded-[50px] px-6 py-[6px]"
+                >
+                    결제 내역 확인
                 </button>
                 <span
                   onClick={onClickLogout}

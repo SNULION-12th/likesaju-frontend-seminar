@@ -1,28 +1,38 @@
 import React from "react";
-
-const point = 5;
+import { useSelector, useDispatch } from 'react-redux';
+import { setLockState, setUserProfile } from '../.././redux/user-slice';
+import { reducePoint } from 'apis/api';
 
 const MsgComponent = ({ point }) => {
     return (
         <div className="flex flex-col items-center justify-center mb-5">
             {point >= 5 ?
-                <span className="text-[#170F49] font-extrabold text-[22px] leading-10 tracking-tighter">테마별 운세 조회를 위해<br/><span className="text-[#4A3AFF]">{point} 포인트</span>를 사용할까요?</span> 
+                <span className="text-[#170F49] font-extrabold text-[22px] leading-10 tracking-tighter">테마별 운세 조회를 위해<br/><span className="text-[#4A3AFF]">5 포인트</span>를 사용할까요?</span> 
             : <span className="text-[#170F49] font-extrabold text-[22px] leading-10 tracking-tighter">포인트가 부족합니다.<br />충전 화면으로 이동할까요?</span>}
         </div>
     )
 };
 
-const BtnsComponent = ({ point }) => {
+const BtnsComponent = ({ point, setIsModalOpen, setIsPointModalOpen }) => {
+    const dispatch = useDispatch();
+    const data = useSelector((data) => data.user);
+
     const onClickCancel = () => {
-        alert("취소");
+        setIsModalOpen(false);
     };
 
-    const onClickUse = () => {
-        alert("사용");
-    };
-
+    const onClickUse = async () => {
+        const response = await reducePoint(5);
+        console.log(response);
+        if (response) {
+            dispatch(setLockState(false));
+            dispatch(setUserProfile({ ...data, remaining_points: response.remaining_points }));
+            setIsModalOpen(false);
+        }
+    }
     const onClickMove = () => {
-        alert("이동");
+        setIsModalOpen(false);
+        setIsPointModalOpen(true);
     };
 
     return (
@@ -40,7 +50,8 @@ const BtnsComponent = ({ point }) => {
     )
 };
 
-export const SajuPurchaseModal = ({ setIsModalOpen }) => {
+export const SajuPurchaseModal = ({ setIsModalOpen, setIsPointModalOpen }) => {
+    const point = useSelector((state) => state.user.remaining_points);
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="w-[532px] bg-white rounded-[18px] shadow-md px-[30px] py-5">
@@ -52,7 +63,11 @@ export const SajuPurchaseModal = ({ setIsModalOpen }) => {
                 <div className="flex flex-col justify-center items-center mt-[10px]">
                     <MsgComponent point={point} />
                     <span className="text-[#6F6C90] font-semibold text-xl tracking-tighter">내 포인트 : {point}P</span>
-                    <BtnsComponent point={point} />
+                    <BtnsComponent
+                        point={point}
+                        setIsModalOpen={setIsModalOpen}
+                        setIsPointModalOpen={setIsPointModalOpen}
+                    />
                 </div>
             </div>
         </div>
