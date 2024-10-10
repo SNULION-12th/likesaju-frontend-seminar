@@ -5,12 +5,12 @@ export const MainSection = () => {
   return (
     <SectionLayout>
       <div className="flex flex-col w-full gap-8 items-start">
-        <h1 className="text-[64px] leading-normal whitespace-pre-wrap text-left nanum-extra-bold">
+        <h1 className="text-[64px] leading-normal whitespace-pre-wrap text-left nanum-extra-bold dark:text-white">
           <span>멋쟁이</span> <s className="text-gray-500">사자</s>
           {'\n'}
           <span>사주처럼</span>
         </h1>
-        <p className="text-lg text-left">
+        <p className="text-lg text-left  dark:text-white">
           오늘의 사주 운세를 확인하고, 친구에게 공유하자!
         </p>
         <a href="/saju">

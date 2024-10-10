@@ -4,11 +4,15 @@ import ChatPage from './routes/chat/pages/chat-page';
 import LoginPage from './routes/login/pages/login-page';
 import MainPage from './routes/main/pages/main-page';
 import SajuPage from './routes/saju/pages/saju-page';
+import ApprovalPage from 'routes/pay/pages/approval-page';
+import CancelPage from 'routes/pay/pages/cancel-page';
+import FailPage from 'routes/pay/pages/fail-page';
 import { Header } from './components/header';
 import SetProfilePage from './routes/set-profile/pages/set-profile-page';
 import Auth from './routes/login/pages/auth';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PayRecord from 'routes/pay/pages/pay-record';
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
               />
               <Route path="/set-profile" element={<SetProfilePage />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/approval" element={<ApprovalPage />} />
+              <Route path="/cancel" element={<CancelPage />} />
+              <Route path="/fail" element={<FailPage />} />
+              <Route path="/pay-record" element={<PayRecord />} />
             </Routes>
           </div>
         </div>
