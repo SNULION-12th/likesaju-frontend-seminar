@@ -24,10 +24,10 @@ const userSlice = createSlice({
     },
     setLockState: (state, action) => {
       state.isLocked = action.payload;
-    },
+    }
   },
 });
 
-export const { setLoginState, setUserProfile, setLockState } =
-  userSlice.actions;
+export const { setLoginState, setUserProfile, setLockState } = userSlice.actions;
+
 export default userSlice.reducer;

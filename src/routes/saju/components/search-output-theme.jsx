@@ -36,11 +36,11 @@ export const SearchOutputTheme = () => {
     },
   ];
 
-  const data = useSelector((data) => data);
-  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const [isPointModalOpen, setIsPointModalOpen] = useState(false);
-  const isLocked = data.user.isLocked;
+	const data = useSelector((data) => data);
+	const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+	const [isPointModalOpen, setIsPointModalOpen] = useState(false);
+	const isLocked = data.user.isLocked;
 
   const openPurchaseModal = () => {
     setIsPurchaseModalOpen(true);
@@ -99,6 +99,22 @@ export const SearchOutputTheme = () => {
           )}
         </>
       )}
+      {isPointModalOpen && <PointModal setIsModalOpen={setIsPointModalOpen} />}
+	      {!isLocked && (
+	        <>
+	          <Button
+	            className={
+	              'bg-primary-500 text-white font-bold rounded-[10px] mt-4'
+	            }
+	            onButtonClick={openShareModal}
+	          >
+	            오늘 운세 공유하기
+	          </Button>
+	          {isShareModalOpen && (
+	            <SajuShareModal setIsModalOpen={setIsShareModalOpen} />
+	          )}
+	        </>
+	      )}
     </div>
   );
 };

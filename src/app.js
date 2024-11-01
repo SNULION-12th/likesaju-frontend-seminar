@@ -9,9 +9,9 @@ import SetProfilePage from './routes/set-profile/pages/set-profile-page';
 import Auth from './routes/login/pages/auth';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ApprovalPage from 'routes/pages/approval-page';
-import CancelPage from 'routes/pages/cancel-page';
-import FailPage from 'routes/pages/fail-page';
+import ApprovalPage from 'routes/pay/pages/approval-page';
+import CancelPage from 'routes/pay/pages/cancel-page';
+import FailPage from 'routes/pay/pages/fail-page';
 
 function App() {
   return (
