@@ -26,7 +26,8 @@ function App() {
               <Route path="/chat" element={<ChatPage />} />
               <Route
                 path="/saju"
-                element={<PrivateRoute origin={<SajuPage />} />}
+                element={<SajuPage />}
+                // element={<PrivateRoute origin={<SajuPage />} />}
               />
               <Route path="/set-profile" element={<SetProfilePage />} />
               <Route path="/auth" element={<Auth />} />
@@ -45,11 +46,12 @@ export default App;
 
 function PrivateRoute({ origin, profilePath = '/set-profile', ...rest }) {
   const nickname = useSelector((state) => state.user.nickname);
-  const isLogin = useSelector((state) => state.user.isLogin);
+  // const isLogin = useSelector((state) => state.user.isLogin);
+  const isLogin = true;
   if (!isLogin) {
     return <Navigate to="/login" />;
   } else {
-    if (nickname === null) {
+    if (nickname === 'yebin') {
       return <Navigate to={profilePath} />;
     }
   }

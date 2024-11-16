@@ -11,7 +11,11 @@ export const OutputCardFront = ({ data }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        boxShadow: isHovered && `0px 0px 50px 0px ${data.shadow}`,
+        boxShadow: isHovered
+          ? '0px 0px 16px 0px rgba(197, 179, 255, 0.5)'
+          : '0px 5px 16px 0px rgba(8, 15, 52, 0.06)',
+        backdropFilter: isHovered ? 'blur(10px)' : 'none',
+        WebkitBackdropFilter: isHovered ? 'blur(10px)' : 'none',
       }}
     >
       <div className="flex flex-col gap-[50px]">
