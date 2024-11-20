@@ -24,8 +24,10 @@ export const FAQSection = () => {
   return (
     <SectionLayout>
       <div className="w-full h-full flex flex-col gap-[80px]">
-        <h3 className="text-left text-4xl nanum-extra-bold">FAQs</h3>
-        <div className="flex flex-col gap-[30px] justify-center">
+        <h3 className="text-left text-4xl nanum-extra-bold mobile:w-full">
+          FAQs
+        </h3>
+        <div className="flex flex-col gap-[30px] justify-center mobile:w-full">
           {faqAccordionInfo.map((accordion) => (
             <FAQAccordion
               key={accordion.question}
@@ -43,9 +45,11 @@ const FAQAccordion = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col rounded-xl px-[50px] py-10 shadow-2xl w-full gap-5">
-      <div className="flex justify-between items-center gap-5">
-        <p className="text-xl font-bold truncate">{question}</p>
+    <div className="flex flex-col rounded-xl px-[50px] py-10 shadow-2xl w-full gap-5 mobile:py-5 mobile:px-8">
+      <div className="flex justify-between items-center gap-5 ">
+        <p className="text-xl font-bold truncate mobile:text-base">
+          {question}
+        </p>
         <button
           className="rounded-full shadow-lg transition"
           onClick={() => {
@@ -53,7 +57,7 @@ const FAQAccordion = ({ question, answer }) => {
           }}
         >
           <svg
-            className={`transition transform ${isOpen ? '' : '-rotate-90'}`}
+            className={`transition transform ${isOpen ? '' : '-rotate-90'} mobile:size-8`}
             xmlns="http://www.w3.org/2000/svg"
             width="51"
             height="51"

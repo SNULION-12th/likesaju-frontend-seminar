@@ -18,17 +18,20 @@ export const ShareSection = () => {
   return (
     <SectionLayout>
       <div className="w-full h-full flex flex-col gap-[80px]">
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex justify-between items-center mobile:flex-col">
           <div className="space-y-6">
-            <h3 className="text-left text-4xl nanum-extra-bold text-neutral-800">
+            <h3 className="text-left text-4xl nanum-extra-bold text-neutral-800 mobile:text-center mobile:text-3xl">
               사주 공유하기
             </h3>
-            <p className="text-xl font-bold text-neutral-800">
+            <p className="text-xl font-bold text-neutral-800 mobile:text-lg mobile:p-5">
               채팅으로 사주를 공유해보세요
             </p>
           </div>
           <a href="/chat">
-            <Button className="w-[250px] h-[50px]" isRounded={true}>
+            <Button
+              className="w-[250px] h-[50px mobile:text-lg"
+              isRounded={true}
+            >
               1:1 채팅 하러가기
             </Button>
           </a>
