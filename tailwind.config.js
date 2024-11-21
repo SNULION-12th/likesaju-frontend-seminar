@@ -1,11 +1,9 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors';
 
-const colors = require('tailwindcss/colors');
-
-module.exports = {
+export default {
   darkMode: 'class',
-
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     './**/@material-tailwind/**/*.{js,ts,jsx,tsx}',
@@ -42,5 +40,3 @@ module.exports = {
   },
   plugins: [],
 };
-
-export default colors;
