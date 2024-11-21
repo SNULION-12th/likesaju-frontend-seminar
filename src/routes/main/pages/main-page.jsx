@@ -16,7 +16,7 @@ const MainPage = () => {
     <div
       className={`flex flex-col w-full items-center bg-gradient-to-b ${darkMode ? 'from-neutral-900 to-neutral-800' : 'from-neutral-400 to-neutral-200'} ${darkMode ? 'dark' : ''}`}
     >
-      <div className="w-full flex justify-end pt-3 px-3">
+      <div className="fixed z-[9999] w-full flex justify-end pt-3 px-3">
         {/*Step 2*/}
         <button
           onClick={() => dispatch(toggleDarkMode())}
