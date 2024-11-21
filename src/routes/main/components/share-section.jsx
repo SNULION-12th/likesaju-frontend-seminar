@@ -36,7 +36,7 @@ export const ShareSection = () => {
             </Button>
           </a>
         </div>
-        <div className="flex gap-10 justify-center">
+        <div className="flex gap-10 justify-center mobile:flex-col">
           {shareCardInfo.map((card) => (
             <ShareCard
               key={card.title}
