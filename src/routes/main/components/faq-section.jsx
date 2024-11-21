@@ -53,7 +53,9 @@ const FAQAccordion = ({ question, answer }) => {
           }}
         >
           <svg
-            className={`transition transform ${isOpen ? '' : '-rotate-90'}`}
+            className={`transition-transform transform ${
+              isOpen ? 'rotate-180' : 'rotate-0'
+            }`}
             xmlns="http://www.w3.org/2000/svg"
             width="51"
             height="51"
@@ -78,7 +80,13 @@ const FAQAccordion = ({ question, answer }) => {
           </svg>
         </button>
       </div>
-      {isOpen && <p className="text-lg w-full text-left">{answer}</p>}
+      <div
+        className={`transition-max-height duration-1000 ease-in-out overflow-hidden ${
+          isOpen ? 'max-h-screen' : 'max-h-0'
+        }`}
+      >
+        <p className="text-lg w-full text-left">{answer}</p>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,10 @@ module.exports = {
     './**/@material-tailwind/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      mobile: { max: '1024px' },
+      'mobile-small': { max: '768px' },
+    },
     extend: {
       colors: {
         primary: '#4A3AFF',
@@ -31,9 +35,14 @@ module.exports = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn 0.5s ease-in-out',
+        'spin-slow': 'spin 3s linear infinite',
       },
     },
     fontFamily: {
