@@ -21,6 +21,8 @@ export const MainSection = () => {
   const card4Ref = useRef(null);
   const lionRef = useRef(null);
 
+  const titleRef = useRef(null);
+
   useEffect(() => {
     // 초기 렌더링 시 초기값 세팅
     interpolateBackground(0);
@@ -61,10 +63,19 @@ export const MainSection = () => {
 
     // 오리지널 X를 기반으로, 뷰포트의 중앙에서 얼마나 떨어져있는지를 계산합니다.
     const offsetXFromMiddle = window.innerWidth / 2 - (originalX + 170);
+    const offsetX2FromMiddle = window.innerWidth / 2 + 50;
+
     if (designInnerRef.current) {
       gsap.to(designInnerRef.current, {
-        //
         x: offsetXFromMiddle * (1 - factor1),
+      });
+    }
+
+    if (titleRef.current) {
+      gsap.to(titleRef.current, {
+        x:
+          offsetX2FromMiddle * (1 - factor1) -
+          window.innerWidth * (1 - factor1),
       });
     }
 
@@ -124,7 +135,10 @@ export const MainSection = () => {
       innerLayerRef={sectionRef}
     >
       <div className="relative flex flex-col w-full gap-8 items-start mobile:items-center">
-        <div className="flex flex-col items-start mobile:items-center gap-8">
+        <div
+          ref={titleRef}
+          className="flex flex-col items-start mobile:items-center gap-8"
+        >
           <h1 className="text-[64px] mobile:text-[32px] leading-normal whitespace-pre-wrap text-left mobile:text-center nanum-extra-bold text-black dark:text-white">
             <span>멋쟁이</span>{' '}
             <s className="text-gray-500 dark:text-gray-400">사자</s>
