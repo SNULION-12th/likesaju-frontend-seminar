@@ -4,9 +4,7 @@ import SajuSearchLoading from './search-loading';
 import SajuSearchOutput from './search-output';
 import sajuDummyRequest from './saju-dummy-request.jsx';
 
-export const SajuSearchContainer = () => {
-  const [step, setStep] = useState(0);
-
+export const SajuSearchContainer = ({ step, setStep }) => {
   function onSubmit() {
     setStep(1);
     sajuDummyRequest().then(() => {
