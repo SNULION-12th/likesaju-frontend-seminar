@@ -17,23 +17,23 @@ export const ShareSection = () => {
 
   return (
     <SectionLayout>
-      <div className="w-full flex flex-col gap-10 sm:gap-20">
-        <div className="w-full flex flex-col sm:flex-row justify-between items-center">
-          <div className="space-y-6 text-center sm:text-left">
-            <h3 className="text-3xl sm:text-4xl nanum-extra-bold text-neutral-800">
+      <div className="w-full h-full flex flex-col gap-[80px]">
+        <div className="w-full flex justify-between items-center">
+          <div className="space-y-6">
+            <h3 className="text-left text-4xl nanum-extra-bold text-neutral-800">
               사주 공유하기
             </h3>
-            <p className="text-lg sm:text-xl font-bold text-neutral-800">
+            <p className="text-xl font-bold text-neutral-800">
               채팅으로 사주를 공유해보세요
             </p>
           </div>
-          <a href="/chat" className="mt-4 sm:mt-0">
-            <Button className="w-[200px] sm:w-[250px] h-[50px]" isRounded={true}>
+          <a href="/chat">
+            <Button className="w-[250px] h-[50px]" isRounded={true}>
               1:1 채팅 하러가기
             </Button>
           </a>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="flex gap-10 justify-center">
           {shareCardInfo.map((card) => (
             <ShareCard
               key={card.title}
@@ -50,11 +50,11 @@ export const ShareSection = () => {
 
 const ShareCard = ({ title, description, img }) => {
   return (
-    <div className="flex flex-col rounded-xl shadow-md max-w-[300px] sm:max-w-[450px] overflow-hidden">
-      <img src={img} alt={title} className="w-full h-auto" />
-      <div className="p-4 sm:p-5 flex flex-col items-start gap-1.5">
-        <h4 className="text-sm sm:text-base font-normal text-neutral-800">{title}</h4>
-        <p className="text-lg sm:text-xl font-extrabold text-neutral-800">{description}</p>
+    <div className="flex flex-col rounded-xl shadow-md max-w-[450px] max-h-[378px] overflow-hidden">
+      <img src={img} alt={title} />
+      <div className="p-5 flex flex-col items-start gap-1.5">
+        <h4 className="text-base font-normal text-neutral-800">{title}</h4>
+        <p className="text-xl font-extrabold text-neutral-800">{description}</p>
       </div>
     </div>
   );
