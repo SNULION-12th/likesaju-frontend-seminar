@@ -27,8 +27,8 @@ export const Header = () => {
   }, [loggedIn]);
 
   const linkStyle =
-    'text-xl font-bold text-[#14142B] leading-6 hover:font-extrabold hover:text-[#4A3AFF] hover:cursor-pointer';
-  const activeLinkStyle = 'text-xl font-extrabold text-[#4A3AFF] leading-6';
+    'text-xl mobile:text-md font-bold mobile:font-semibold text-[#14142B] leading-6 hover:font-extrabold mobile:hover:font-bold hover:text-[#4A3AFF] hover:cursor-pointer';
+  const activeLinkStyle = 'text-xl mobile:text-md font-extrabold mobile:font-bold text-[#4A3AFF] leading-6';
 
   const onClickPoint = () => {
     setIsPointModalOpen(true);
@@ -42,6 +42,7 @@ export const Header = () => {
       dispatch(setLoginState(false));
       dispatch(
         setUserProfile({
+          user: null,
           nickname: null,
           profilepic_id: null,
           remaining_points: null,
@@ -52,14 +53,14 @@ export const Header = () => {
   };
 
   return (
-    <div className="w-full flex flex-row items-center justify-between bg-white drop-shadow h-[80px] px-[68px] z-[999]">
+    <div className="sticky top-0 w-full flex flex-row items-center justify-between bg-white drop-shadow h-[80px] px-[68px] mobile:px-4 z-[999]">
       <Link
         to="/"
-        className="text-[26px] font-extrabold text-[#14142B] leading-9 tracking-tighter"
+        className="text-[26px] mobile:text-[24px] font-extrabold mobile:font-bold text-[#14142B] leading-9 tracking-tighter"
       >
         멋쟁이 사주처럼
       </Link>
-      <div className="flex flex-row items-center gap-[50px]">
+      <div className="flex flex-row items-center gap-[50px] mobile:gap-8">
         <Link
           to="/saju"
           className={
@@ -82,7 +83,7 @@ export const Header = () => {
             onMouseOver={() => setShowProfile(true)}
             onMouseLeave={() => setShowProfile(false)}
           >
-            <span className="text-xl font-bold text-[#14142B] leading-6 hover:font-extrabold hover:text-[#4A3AFF] hover:cursor-pointer">
+            <span className="text-xl mobile:text-md font-semibold text-[#14142B] leading-6 hover:font-bold hover:text-[#4A3AFF] hover:cursor-pointer">
               프로필
             </span>
             {showProfile && (

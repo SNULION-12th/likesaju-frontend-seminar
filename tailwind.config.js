@@ -5,11 +5,15 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
   darkMode: 'class',
+
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     './**/@material-tailwind/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      mobile: { max: '1024px' },
+    },
     extend: {
       colors: {
         primary: '#4A3AFF',

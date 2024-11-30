@@ -4,13 +4,15 @@ import { AddFriendsButton } from './add-friends-button';
 import { ChatListTitle } from './chat-list-title';
 import { SearchTextField } from './search-text-field';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const ChatList = () => {
   const { chatRoomList } = useChatWebSocketContext();
-  console.log(chatRoomList)
   const [filteredChatRoomList, setFilteredChatRoomList] =
     useState(chatRoomList);
   const [searchText, setSearchText] = useState('');
+  const userId = useSelector((state) => state.user.user?.id);
+
   useEffect(() => {
     if (searchText === '') {
       setFilteredChatRoomList(chatRoomList);
@@ -26,6 +28,7 @@ export const ChatList = () => {
       );
     }
   }, [chatRoomList, searchText]);
+
   return (
     <section className="w-[400px] flex flex-col  h-[calc(100vh-80px)] overflow-y-auto border-r bg-[var(--background,#FFFFFF)]">
       <div className="h-[154px] flex flex-col items-center">
@@ -41,15 +44,18 @@ export const ChatList = () => {
       <div>
         {filteredChatRoomList &&
           filteredChatRoomList.map((value) => {
-            const representativeParticipant = value.participants[0];
-            console.log(value)
-            console.log(value.participants[0])
+            const representativeParticipant =
+              value.participants.length === 1
+                ? value.participants[0]
+                : value.participants.filter((value) => value.id !== userId)[0];
             return (
               <ChatElement
                 key={value.id}
                 chatRoomId={value.id}
                 nickname={representativeParticipant.profile.nickname}
-                profileImageId={representativeParticipant.profile.profilepic_id}
+                profileImageId={parseInt(
+                  representativeParticipant.profile.profilepic_id,
+                )}
                 lastMessage={value.last_message}
               />
             );
